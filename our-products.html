@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Products — Spartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Fractul';font-style:normal;font-weight:500;src:url('fonts/fractul-medium.ttf') format('truetype');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Space Grotesk',system-ui,sans-serif}
+  :root{--line:#1a1a1a;--cardln:#1a1a1a;--green:#2EA45F;--purple:#B388EB}
+  html,body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:24px;padding-right:24px}
+  @media(min-width:1920px){.wrap{max-width:1640px}}
+  @media(max-width:640px){.wrap{padding-left:22px;padding-right:22px}}
+
+  .site-nav{position:sticky;top:0;z-index:50;height:70px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo img{height:26px;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;color:#e6e6e6;opacity:.9;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:#fff}
+  .btn-demo{background:#f4f4f5;color:#0a0a0a;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:400;font-size:15px;padding:10px 22px;border-radius:999px;transition:filter .2s}
+  .btn-demo:hover{filter:brightness(.94)}
+  @media(max-width:1023px){.nav-links{display:none}}
+
+  .op{display:grid;grid-template-columns:3fr 9fr;gap:56px;align-items:start;padding:50px 0 100px}
+  @media(max-width:900px){.op{grid-template-columns:1fr;gap:26px}}
+  .op-h{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:20px;color:#e9e9ec;position:sticky;top:96px}
+  @media(max-width:900px){.op-h{position:static}}
+  .op-rows{display:flex;flex-direction:column}
+  .op-row{display:grid;grid-template-columns:1fr 520px;gap:36px;align-items:center;padding:34px 0}
+  .op-row+.op-row{border-top:1px solid var(--line)}
+  @media(max-width:960px){.op-row{grid-template-columns:1fr}}
+  .op-name{display:flex;align-items:center;gap:9px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:19px;color:#f4f4f5;margin-bottom:auto}
+  .op-name .ic{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+  .op-info{display:flex;flex-direction:column;gap:14px;min-height:180px}
+  .op-info h3{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:26px;line-height:1.18;color:#f4f4f5;margin-top:auto}
+  .op-info p{font-size:14px;line-height:1.6;color:#9c9c9c;max-width:440px}
+  .op-explore{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#c9c9cf;margin-top:8px}
+  .op-explore .ar{width:12px;height:12px;transform:rotate(45deg);border-top:1px solid;border-right:1px solid}
+  .op-explore:hover{color:#fff}
+
+  /* visuals */
+  .op-visual{border-radius:12px;overflow:hidden;aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center}
+  .lp-vis{background:linear-gradient(135deg,#14110c,#0a0a0c)}
+  .lp-laptop{width:78%;border:2px solid #2a2a30;border-bottom:none;border-radius:10px 10px 0 0;background:#0d0d10;padding:8px 8px 0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lp-screen{border-radius:5px;overflow:hidden;background:#111;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:14px 10px 10px}
+  .lp-screen .s{aspect-ratio:3/4;border-radius:3px}
+  .lp-screen .s:nth-child(1){background:#e94f3d}.lp-screen .s:nth-child(2){background:#f4b41a}.lp-screen .s:nth-child(3){background:#2e8b57}.lp-screen .s:nth-child(4){background:#e0651a}
+  .lp-screen .s:nth-child(5){background:#7048c0}.lp-screen .s:nth-child(6){background:#d64560}.lp-screen .s:nth-child(7){background:#2a6fd6}.lp-screen .s:nth-child(8){background:#c0392b}
+  .lp-title{grid-column:1/-1;text-align:center;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:#fff;margin-bottom:4px;letter-spacing:.02em}
+  .lp-phone{position:absolute;right:6%;bottom:0;width:20%;min-width:70px;border:2px solid #2a2a30;border-radius:12px 12px 0 0;background:#0d0d10;padding:5px 5px 0}
+  .lp-phone .pg{height:78px;border-radius:6px;background:linear-gradient(180deg,#e0651a,#7048c0)}
+
+  .df-vis{background:linear-gradient(120deg,#f0c98a,#e6a15a 55%,#d98a4a)}
+  .df-phone{width:34%;min-width:120px;aspect-ratio:9/17;border-radius:20px;border:3px solid #1c1c1c;background:#faf6ee;box-shadow:0 20px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 10px}
+  .df-phone .plate{width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#8fb85a 0 30%,#e0a35a 32% 60%,#c94b3a 62% 100%);margin-top:6px}
+  .df-phone .t{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:11px;color:#1a1a1a}
+  .df-phone .btn{margin-top:auto;width:70%;height:16px;border-radius:9px;background:#e8781f}
+  .df-badge{position:absolute;left:6%;top:14%;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#1e1a12;line-height:1.1}
+
+  .ft{border-top:1px solid var(--line);padding-top:70px;position:relative;overflow:hidden}
+  .ft-top{display:flex;gap:80px;flex-wrap:wrap;padding-bottom:56px}
+  .ft-brand{flex:1 1 300px;min-width:200px}.ft-brand img{height:26px}
+  .ft-col{min-width:150px}.ft-col h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:18px}
+  .ft-col a{display:block;font-size:14px;color:#9c9c9c;margin-bottom:12px;transition:color .2s}.ft-col a:hover{color:#fff}
+  .ft-col .soc{display:flex;align-items:center;gap:9px}.ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
+  .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
+  .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+  /* ===== Our Products list (exact Figma spec) ===== */
+  .opx{padding:56px 0 100px}
+  .opx-panel{max-width:1276px;margin:0 auto;border:1px solid #1a1a1a;display:flex;align-items:stretch}
+  @media(max-width:900px){.opx-panel{flex-direction:column}}
+  .opx-label{width:329px;flex:none;padding:24px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:20px;line-height:1.4;color:#9c9c9c;border-right:1px solid #1a1a1a}
+  @media(max-width:900px){.opx-label{width:auto;border-right:none;border-bottom:1px solid #1a1a1a}}
+  .opx-cards{flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;padding:12px;justify-content:center}
+  .opx-card{border:1px solid #1a1a1a;display:flex;flex-direction:column;overflow:hidden}
+  .opx-top{flex:1;min-height:237px;display:grid;grid-template-columns:1fr 409px}
+  @media(max-width:760px){.opx-top{grid-template-columns:1fr}}
+  .opx-text{padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+  .opx-name{display:flex;align-items:center;gap:7px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:17.8px;color:#fff}
+  .opx-name .ic{width:16px;height:16px;border-radius:4px;flex:none}
+  .opx-tt h3{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:18px;line-height:24px;color:#fff;margin-bottom:8px}
+  .opx-tt p{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:12px;line-height:1.4;color:#9c9c9c;max-width:360px}
+  .opx-img{border-left:1px solid #1a1a1a;padding:24px;display:flex}
+  @media(max-width:760px){.opx-img{border-left:none;border-top:1px solid #1a1a1a}}
+  .opx-img .inner{flex:1;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;min-height:180px}
+  .opx-img .inner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .lp-img{background:#0a0a0c;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:12px;align-content:center}
+  .lp-img i{aspect-ratio:3/4;border-radius:3px}
+  .lp-img i:nth-child(1){background:#f4b41a}.lp-img i:nth-child(2){background:#2e8b57}.lp-img i:nth-child(3){background:#e0651a}.lp-img i:nth-child(4){background:#7048c0}
+  .lp-img i:nth-child(5){background:#d64560}.lp-img i:nth-child(6){background:#2a6fd6}.lp-img i:nth-child(7){background:#c0392b}.lp-img i:nth-child(8){background:linear-gradient(135deg,#e0651a,#7048c0)}
+  .df-img{background:linear-gradient(120deg,#f0c98a,#e6a15a 55%,#d98a4a)}
+  .df-img .plate{width:44%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#8fb85a 0 30%,#e0a35a 32% 60%,#c94b3a 62% 100%)}
+  .df-img .lbl{position:absolute;left:9%;top:16%;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:18px;line-height:1.1;color:#241a0c}
+  .opx-explore{border-top:1px solid #1a1a1a;background:#0b0b0b;height:52px;display:flex;align-items:center;gap:12px;padding:0 24px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:#9c9c9c;transition:color .2s}
+  .opx-explore:hover{color:#fff}
+  .opx-explore .ar{width:10px;height:10px;border-top:1.4px solid currentColor;border-right:1.4px solid currentColor;transform:rotate(45deg)}
+
+  /* Our Products hover mega-menu */
+  .nav-dd{position:relative;display:flex;align-items:center}
+  .nav-dd>a{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .nav-dd>a::after{content:"";width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6;transition:transform .2s}
+  .nav-dd:hover>a::after{transform:rotate(225deg) translateY(-2px)}
+  .nav-dd::after{content:"";position:absolute;top:100%;left:-20px;right:-20px;height:22px}
+  .nav-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:540px;background:#0a0a0c;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 24px 60px rgba(0,0,0,.6);z-index:60}
+  .nav-dd:hover .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .nav-pcard{display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:10px;background:transparent;border:1px solid #1a1a1a;transition:border-color .2s}
+  .nav-pcard:hover{border-color:#2EA45F}
+  .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
+  .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
+  .nav-pcard .pd{font-family:'Inter',sans-serif;font-size:11.5px;color:#9c9c9c;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Spartan home"><img src="logo-spartan-horizontal.svg" alt="Spartan"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <div class="nav-dd"><a href="our-products.html" class="active">Our Products</a><div class="nav-panel"><a class="nav-pcard" href="our-layerproof.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span>LayerProof</span><span class="pd">Creative system with multiple sub-products.</span></a><a class="nav-pcard" href="our-dietfit.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span>DietFit</span><span class="pd">Free calorie counter + macro tracker.</span></a></div></div>
+      <a href="open-source.html">Open Source</a>
+      <a href="blog.html">Blog</a>
+      <a href="#">The Team</a>
+      <a href="#">Careers</a>
+    </div>
+    <a class="btn-demo" href="#">Get in touch</a>
+  </div>
+</nav>
+
+<main>
+  <section class="opx">
+    <div class="wrap">
+      <div class="opx-panel">
+        <div class="opx-label">Our Products</div>
+        <div class="opx-cards">
+
+          <article class="opx-card">
+            <div class="opx-top">
+              <div class="opx-text">
+                <div class="opx-name"><span class="ic" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span><b>LayerProof</b></div>
+                <div class="opx-tt">
+                  <h3>Creative system with multiple sub-products</h3>
+                  <p>Turn messy documents into creative social posts, structured presentations and more</p>
+                </div>
+              </div>
+              <div class="opx-img"><div class="inner lp-img"><img src="assets/layerproof-hero.png" alt="LayerProof" onerror="this.remove()"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            </div>
+            <a class="opx-explore" href="our-layerproof.html">Explore <span class="ar"></span></a>
+          </article>
+
+          <article class="opx-card">
+            <div class="opx-top">
+              <div class="opx-text">
+                <div class="opx-name"><span class="ic" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span><b>DietFit</b></div>
+                <div class="opx-tt">
+                  <h3>Free calorie counter + macro tracker</h3>
+                  <p>Track calories with AI in 1.4s, just snap a photo, scan a barcode, or speak your meal.</p>
+                </div>
+              </div>
+              <div class="opx-img"><div class="inner df-img"><img src="assets/dietfit-hero.png" alt="DietFit" onerror="this.remove()"><span class="lbl">Scan<br>meals</span><span class="plate"></span></div></div>
+            </div>
+            <a class="opx-explore" href="our-dietfit.html">Explore <span class="ar"></span></a>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><img src="logo-spartan-horizontal.svg" alt="Spartan"></div>
+      <div class="ft-col"><h4>Platform</h4><a href="our-layerproof.html">LayerProof</a><a href="our-dietfit.html">Dietfit</a></div>
+      <div class="ft-col"><h4>Pages</h4><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="open-source.html">Open Source</a><a href="blog.html">Blog</a><a href="#">About Us</a><a href="#">Careers</a></div>
+      <div class="ft-col"><h4>Socials</h4>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 3.96 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg>Linkedin</a>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="ft-bottom"><span>&copy; 2026 Spartan</span><span>All rights reserved.</span></div>
+  </div>
+  <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
+</footer>
+
+</body>
+</html>

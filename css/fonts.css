@@ -1,0 +1,9 @@
+/* fonts definitions */
+
+@font-face {
+	font-family: 'Fractul';
+	font-style: normal;
+	font-weight: 500;
+	src: url(../fonts/fractul-medium.ttf);
+}
+

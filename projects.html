@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Spartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Fractul';font-style:normal;font-weight:500;src:url('fonts/fractul-medium.ttf') format('truetype');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Space Grotesk',system-ui,sans-serif}
+  :root{--line:#1a1a1a;--cardln:#1a1a1a}
+  html,body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:24px;padding-right:24px}
+  @media(min-width:1920px){.wrap{max-width:1640px}}
+  @media(max-width:640px){.wrap{padding-left:22px;padding-right:22px}}
+
+  .site-nav{position:sticky;top:0;z-index:50;height:70px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo img{height:26px;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;color:#e6e6e6;opacity:.9;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:#fff}
+  .btn-demo{background:#f4f4f5;color:#0a0a0a;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:400;font-size:15px;padding:10px 22px;border-radius:999px;transition:filter .2s}
+  .btn-demo:hover{filter:brightness(.94)}
+  @media(max-width:1023px){.nav-links{display:none}}
+
+  .pj-hero{padding:64px 0 8px}
+  .pj-eyebrow{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6a6a70;margin-bottom:20px}
+  .pj-hero p{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:30px;line-height:1.32;letter-spacing:-.01em;max-width:900px;color:#f2f2f2}
+  @media(min-width:1920px){.pj-hero p{font-size:36px}}
+  @media(max-width:640px){.pj-hero p{font-size:23px}}
+
+  .pj-layout{display:grid;grid-template-columns:3fr 9fr;gap:64px;align-items:start;padding:56px 0 96px}
+  @media(max-width:900px){.pj-layout{grid-template-columns:1fr;gap:26px}}
+  .pj-side{display:flex;flex-direction:column;gap:15px;position:sticky;top:96px}
+  @media(max-width:900px){.pj-side{position:static;flex-direction:row;flex-wrap:wrap;gap:8px}}
+  .pj-cat{text-align:left;background:none;border:none;color:#9c9c9c;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:2px 0;transition:color .2s;align-self:flex-start}
+  .pj-cat:hover{color:#cfcfcf}
+  .pj-cat.on{color:#fff;background:#232424;padding:6px 16px}
+
+  .pj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.pj-grid{grid-template-columns:1fr}}
+  .pj-card{position:relative;border:1px solid var(--cardln);background:#050506;padding:22px;display:flex;flex-direction:column}
+  .pj-logo{height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#000 20%,#1a1a1a 132%);margin-bottom:22px}
+  .pj-logo img{max-height:34px;max-width:62%;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.92}
+  .pj-card h3{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:20px;line-height:1.25;color:#f2f2f2;margin-bottom:auto;min-height:52px}
+  .pj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .pj-tags span{font-size:12px;color:#d0d0d4;background:#161618;border:1px solid var(--cardln);padding:6px 10px;white-space:nowrap}
+
+  .ft{border-top:1px solid var(--line);padding-top:70px;position:relative;overflow:hidden}
+  .ft-top{display:flex;gap:80px;flex-wrap:wrap;padding-bottom:56px}
+  .ft-brand{flex:1 1 300px;min-width:200px}
+  .ft-brand img{height:26px}
+  .ft-col{min-width:150px}
+  .ft-col h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:18px}
+  .ft-col a{display:block;font-size:14px;color:#9c9c9c;margin-bottom:12px;transition:color .2s}
+  .ft-col a:hover{color:#fff}
+  .ft-col .soc{display:flex;align-items:center;gap:9px}
+  .ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
+  .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
+  .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+  /* Our Products hover mega-menu */
+  .nav-dd{position:relative;display:flex;align-items:center}
+  .nav-dd>a{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .nav-dd>a::after{content:"";width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6;transition:transform .2s}
+  .nav-dd:hover>a::after{transform:rotate(225deg) translateY(-2px)}
+  .nav-dd::after{content:"";position:absolute;top:100%;left:-20px;right:-20px;height:22px}
+  .nav-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:540px;background:#0a0a0c;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 24px 60px rgba(0,0,0,.6);z-index:60}
+  .nav-dd:hover .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .nav-pcard{display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:10px;background:transparent;border:1px solid #1a1a1a;transition:border-color .2s}
+  .nav-pcard:hover{border-color:#2EA45F}
+  .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
+  .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
+  .nav-pcard .pd{font-family:'Inter',sans-serif;font-size:11.5px;color:#9c9c9c;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Spartan home"><img src="logo-spartan-horizontal.svg" alt="Spartan"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <div class="nav-dd"><a href="our-products.html">Our Products</a><div class="nav-panel"><a class="nav-pcard" href="our-layerproof.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span>LayerProof</span><span class="pd">Creative system with multiple sub-products.</span></a><a class="nav-pcard" href="our-dietfit.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span>DietFit</span><span class="pd">Free calorie counter + macro tracker.</span></a></div></div>
+      <a href="open-source.html">Open Source</a>
+      <a href="blog.html">Blog</a>
+      <a href="#">The Team</a>
+      <a href="#">Careers</a>
+    </div>
+    <a class="btn-demo" href="#">Get in touch</a>
+  </div>
+</nav>
+
+<header class="pj-hero">
+  <div class="wrap">
+    <div class="pj-eyebrow">Projects</div>
+    <p>From premier SaaS architectures to high-conversion e-commerce platforms. We transform ambitious ideas into robust, scalable digital products through meticulous engineering.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="pj-layout">
+      <aside class="pj-side">
+        <button class="pj-cat on">All</button>
+        <button class="pj-cat">Health Tech</button>
+        <button class="pj-cat">Mobile Charging</button>
+        <button class="pj-cat">Insurance</button>
+        <button class="pj-cat">Fragrance Tech</button>
+        <button class="pj-cat">Cloud Infrastructure</button>
+        <button class="pj-cat">AI SaaS</button>
+        <button class="pj-cat">Dating</button>
+        <button class="pj-cat">FinTech</button>
+      </aside>
+
+      <div class="pj-grid">
+        <a class="pj-card" href="case-resiquant.html">
+          <div class="pj-logo"><img src="assets/logos/resiquant.png" alt="ResiQuant"></div>
+          <h3>The AI Platform powering NatCat Property Insurance</h3>
+          <div class="pj-tags"><span>AI for Insurance</span><span>B2B</span><span>data-heavy SaaS</span></div>
+        </a>
+        <a class="pj-card" href="#">
+          <div class="pj-logo"><img src="assets/logos/paratus-health.png" alt="Paratus Health"></div>
+          <h3>Gen AI Built for Healthcare. Designed for Your Phone Lines.</h3>
+          <div class="pj-tags"><span>AI Healthcare</span><span>B2B</span><span>Saas</span></div>
+        </a>
+        <a class="pj-card" href="#">
+          <div class="pj-logo"><img src="assets/logos/chargefuze.png" alt="chargeFUZE"></div>
+          <h3>The ultimate convenience of on-the-go mobile device charging with chargeFUZE.</h3>
+          <div class="pj-tags"><span>IoT-enabled</span><span>B2B</span><span>Saas</span><span>Mobility Tech</span></div>
+        </a>
+        <a class="pj-card" href="#">
+          <div class="pj-logo"><img src="assets/logos/triangle.png" alt="Triangle"></div>
+          <h3>AI that actually understands your health</h3>
+          <div class="pj-tags"><span>Medical Research AI</span><span>AI Healthcare</span><span>B2C</span></div>
+        </a>
+        <a class="pj-card" href="#">
+          <div class="pj-logo"><img src="assets/logos/camber.png" alt="Camber"></div>
+          <h3>Agentic AI for the modern data warehouse</h3>
+          <div class="pj-tags"><span>Data Infrastructure</span><span>B2B</span><span>Cloud</span></div>
+        </a>
+        <a class="pj-card" href="#">
+          <div class="pj-logo"><img src="assets/logos/atrix.png" alt="Atrix"></div>
+          <h3>Turn messy data and rewards into actionable insights</h3>
+          <div class="pj-tags"><span>AI SaaS</span><span>B2B</span><span>Data</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><img src="logo-spartan-horizontal.svg" alt="Spartan"></div>
+      <div class="ft-col">
+        <h4>Platform</h4>
+        <a href="#">LayerProof</a>
+        <a href="#">Dietfit</a>
+      </div>
+      <div class="ft-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="open-source.html">Open Source</a>
+        <a href="blog.html">Blog</a>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="ft-col">
+        <h4>Socials</h4>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 3.96 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg>Linkedin</a>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2026 Spartan</span>
+      <span>All rights reserved.</span>
+    </div>
+  </div>
+  <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
+</footer>
+
+<script>
+  document.querySelectorAll('.pj-cat').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.pj-cat').forEach(function(x){x.classList.remove('on');});
+      c.classList.add('on');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+.fastc {
+	position: relative;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 113px;
+	background-color: #000;
+	padding: 82px 24px 240px 24px;
+	overflow: auto;
+}
+
+.fastc .btn {
+	position: absolute;
+	text-shadow: -0.1px -0.1px 0px #000,0.1px -0.1px 0px #000,0.1px 0.1px 0px #000,-0.1px 0.1px 0px #000;
+	display: flex;
+	justify-content: center;
+	color: #000;
+	font-family: 'Fractul';
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: center;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 99.59px;
+}
+
+.fastc .line {
+	margin-left: -1px;
+	width: 0; height: 31px;
+	flex-shrink: 0;
+	align-self: center;
+	border-left: 1px dashed var(--green);
+}
+
+
+
+/* row-a */
+
+.fastc .row-a {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+}
+
+.fastc .row-icon {
+	width: 24px;
+	flex-shrink: 0;
+	aspect-ratio: 1 / 1;
+}
+
+.fastc .row-text1 {
+	text-align: left;
+}
+/* end row-a*/
+
+
+
+
+/* column-a */
+
+.fastc .column-a {
+	width: 87px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+/* end column-a*/
+
+
+.fastc .text {
+	align-self: stretch;
+}
+
+
+
+/* column-b */
+
+.fastc .column-b {
+	width: 12px;
+	display: flex;
+	flex-direction: column;
+}
+/* end column-b*/
+
+
+.fastc .circle-black {
+	width: 12px; height: 12px;
+	flex-shrink: 0;
+	align-self: start;
+	background-color: #000;
+	border: 1px solid var(--green);
+	border-radius: 50%;
+}
+
+.fastc .graphic1 {
+	position: absolute; top: 122px; left: 50%; 
+	translate: -50% 0;
+	margin-top: -6px;
+	width: calc(100% - 32px); height: 601px;
+	max-width: 1351px;
+}
+
+.fastc .subtitle-heading-2-one {
+	width: 100%;
+	max-width: 1277px;
+	color: var(--white);
+	--min-font-size: 22; --max-font-size: 35.85; font-size: var(--interpolate);
+	font-family: 'Fractul';
+	line-height: 1.278;
+	letter-spacing: -0.66px;
+}
+
+.fastc .group-bottom {
+	container: group-bottom / inline-size;
+	position: relative; z-index: 5;
+	margin-left: -1px;
+	width: 100%;
+	max-width: 1351px;
+	min-height: 324px;
+	flex-shrink: 0;
+	font-size: 11.95px;
+	line-height: 1;
+	letter-spacing: 0px;
+}
+
+.fastc .row1 {
+	position: absolute; top: 0; left: 65px; 
+	display: flex;
+	align-items: flex-start;
+	gap: 31px;
+}
+
+.fastc .group1 {
+	position: relative;
+	width: 697px;
+	min-height: 186px;
+	flex-shrink: 0;
+	color: #fff;
+	font-family: 'Avenue Mono';
+	text-align: left;
+}
+
+.fastc .btn1 {
+	top: 49px; left: 72px; 
+}
+
+.fastc .line1 {
+	position: absolute; top: 64px; left: 206px; 
+	margin-left: unset;
+	width: calc(100% - 206px); height: 0;
+	max-width: 355px;
+	flex-shrink: unset;
+	align-self: unset;
+	border-left: unset;
+	border-top: 1px solid var(--placeholder);
+}
+
+.fastc .row2 {
+	position: absolute; top: 53px; left: 556px; 
+}
+
+.fastc .col2 {
+	position: absolute; top: 0; left: 205px; 
+}
+
+.fastc .col3 {
+	position: absolute; top: 0; left: 323px; 
+}
+
+.fastc .col4 {
+	position: absolute; top: 0; left: 440px; 
+}
+
+.fastc .graphic2 {
+	position: absolute; top: 65px; left: 17px; 
+	width: 55px; height: 121px;
+}
+
+.fastc .circle-black1 {
+	position: absolute; top: 103px; left: 0; 
+	width: 36px; height: 36px;
+	background-color: #000;
+	padding: 11px;
+	border: 1px solid var(--purple);
+	border-radius: 50%;
+}
+
+.fastc .graphic3 {
+	rotate: 90deg;
+	transform-origin: 50% 50%;
+	height: 11px;
+}
+
+.fastc .group-right {
+	position: relative;
+	width: 559px;
+	min-height: 186px;
+	flex-shrink: 0;
+	color: #000;
+	font-family: 'Fractul';
+	text-align: left;
+}
+
+.fastc .group2 {
+	position: absolute; top: 0; left: 145px; 
+	width: 244px;
+	color: #fff;
+	font-family: 'Avenue Mono';
+	padding: 0 67px;
+}
+
+.fastc .line2 {
+	position: absolute; top: 65px; left: 0; right: 0; 
+	margin-left: unset;
+	width: unset; height: 0;
+	flex-shrink: unset;
+	align-self: unset;
+	border-left: unset;
+	border-top: 1px solid var(--placeholder);
+}
+
+.fastc .col5 {
+	position: relative; z-index: 1;
+	margin-left: auto;
+}
+
+.fastc .graphic4 {
+	position: absolute; z-index: 2; top: 56px; left: 453px; 
+	width: 106px; height: 17px;
+}
+
+.fastc .btn-week-4-internal {
+	z-index: 3; top: 49px; left: 60px; 
+	color: unset;
+	font-family: 'unset';
+}
+
+.fastc .btn-week-x-investor {
+	z-index: 4; top: 49px; left: 346px; 
+	color: unset;
+	font-family: 'unset';
+}
+
+.fastc .group3 {
+	position: absolute; top: 65px; left: 0; 
+	width: 59px; height: 121px;
+}
+
+.fastc .graphic5 {
+	position: absolute; top: 0; left: 18px; 
+	width: 42px; height: 121px;
+}
+
+.fastc .circle-black2 {
+	position: absolute; top: 38px; left: 0; 
+	width: 36px; height: 36px;
+	background-color: #000;
+	padding: 10px;
+	border: 1px solid var(--purple);
+	border-radius: 50%;
+}
+
+.fastc .graphic6 {
+	height: 14px;
+}
+
+.fastc .btn-delivery {
+	top: 169px; left: 0; 
+}
+
+.fastc .line3 {
+	position: absolute; top: 185px; left: 67px; 
+	width: calc(100% - 67px); height: 0;
+	max-width: 1116px;
+	border-top: 1px solid var(--green);
+}
+
+.fastc .col6 {
+	position: absolute; top: 151px; left: 1184px; 
+	display: flex;
+	flex-direction: column;
+	gap: 43px;
+	color: #fff;
+	font-family: 'Avenue Mono';
+	padding-left: 41px;
+}
+
+
+
+/* row-b */
+
+.fastc .row-b {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+}
+
+.fastc .row-text2 {
+	text-align: left;
+}
+/* end row-b*/
+
+
+.fastc .graphic7 {
+	position: absolute; z-index: 2; top: 5px; left: -1px; 
+	width: 42px; height: 57px;
+}
+
+.fastc .row-top {
+	align-self: start;
+}
+
+.fastc .row-top .row-circle {
+	align-self: unset;
+}
+
+.fastc .row-bottom {
+	position: relative; z-index: 1;
+	align-self: end;
+}
+
+.fastc .row-bottom .row-circle {
+	align-self: unset;
+}
+
+.fastc .row3 {
+	position: absolute; top: 170px; left: 139px; 
+	display: flex;
+	align-items: flex-start;
+	gap: 88px;
+}
+
+.fastc .row4 {
+	position: relative;
+	margin-top: 16px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 16px;
+	color: #fff;
+	font-family: 'Avenue Mono';
+	padding-left: 74px;
+	padding-top: 57px;
+}
+
+.fastc .line4 {
+	position: absolute; top: 121px; right: 101px; 
+	margin-left: unset;
+	width: 278px; height: 0;
+	flex-shrink: unset;
+	align-self: unset;
+	border-left: unset;
+	border-top: 1px solid var(--placeholder);
+}
+
+.fastc .graphic8 {
+	position: absolute; z-index: 1; top: 0; right: 524px; 
+	width: 56px; height: 121px;
+}
+
+.fastc .frame {
+	position: absolute; z-index: 2; top: 53px; right: 562px; 
+	background-color: #000;
+	padding: 9px 11px 9px 9px;
+	border: 1px solid var(--purple);
+	border-radius: 99.59px;
+}
+
+.fastc .graphic9 {
+	width: 14px; height: 14px;
+}
+
+.fastc .btn-left {
+	position: static;
+	margin-top: 49px;
+}
+
+.fastc .col7 {
+	position: relative; z-index: 2;
+	flex-shrink: 0;
+	text-align: left;
+}
+
+.fastc .col7 .column-text {
+	margin-left: -4px; margin-right: -4px;
+}
+
+.fastc .col8 {
+	position: relative; z-index: 3;
+	margin-left: 21px;
+	flex-shrink: 0;
+	text-align: left;
+}
+
+.fastc .col8 .column-text {
+	margin-left: -4px; margin-right: -4px;
+}
+
+.fastc .row-right {
+	position: relative; z-index: 1;
+	margin-left: 23px; margin-top: 53px;
+}
+
+.fastc .col-right {
+	width: 266px;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	flex-shrink: 0;
+	text-align: left;
+}
+
+.fastc .btn-week-1-delivery {
+	position: static;
+	align-self: center;
+}
+
+.fastc .col9 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	color: #fff;
+	font-family: 'Avenue Mono';
+}
+
+
+
+/** breakpoints (margin / paddings) **/
+
+@media screen and (max-width: 1280px) {
+	.fastc {
+		padding-inline: var(--margin-sm);
+	}
+	.fastc .row4 {
+		padding-inline: 0;
+	}
+}
+
+
+
+/* container queries (flex rows) */
+
+@container group-bottom (width < 1285px) {
+	.fastc .row1 {
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+	}
+	.fastc .row1 > * {
+		text-align: center;
+	}
+	.fastc .row1 > .group1 {
+		width: 100%;
+		max-width: 697px;
+	}
+	.fastc .row1 > .group-right {
+		width: 100%;
+		max-width: 559px;
+	}
+}
+
+@container group-bottom (width < 950px) {
+	.fastc .row3 {
+		flex-direction: column;
+		align-items: center;
+		gap: 19px;
+	}
+	.fastc .row3 > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+	.fastc .row3 > .col-right {
+		align-items: center;
+	}
+	.fastc .row3 > .col-right > * {
+		text-align: unset;
+	}
+}

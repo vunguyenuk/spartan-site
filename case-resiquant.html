@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ResiQuant — Spartan Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Fractul';font-style:normal;font-weight:500;src:url('fonts/fractul-medium.ttf') format('truetype');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Space Grotesk',system-ui,sans-serif}
+  :root{--line:#1a1a1a;--cardln:#1a1a1a;--muted:#9c9c9c;--green:#2EA45F;--lime:#6CFF80}
+  html,body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:24px;padding-right:24px}
+  @media(min-width:1920px){.wrap{max-width:1640px}}
+  @media(max-width:640px){.wrap{padding-left:22px;padding-right:22px}}
+
+  .site-nav{position:sticky;top:0;z-index:50;height:70px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo img{height:26px;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;color:#e6e6e6;opacity:.9;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:#fff}
+  .btn-demo{background:#f4f4f5;color:#0a0a0a;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:400;font-size:15px;padding:10px 22px;border-radius:999px;transition:filter .2s}
+  .btn-demo:hover{filter:brightness(.94)}
+  @media(max-width:1023px){.nav-links{display:none}}
+
+  .cs{display:grid;grid-template-columns:334px 1fr;gap:110px;align-items:start;padding:48px 0 90px}
+  @media(max-width:900px){.cs{grid-template-columns:1fr;gap:32px}}
+
+  /* left rail */
+  .cs-rail{position:sticky;top:96px;display:flex;flex-direction:column;gap:20px}
+  @media(max-width:900px){.cs-rail{position:static}}
+  .cs-rname{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',monospace;font-size:15px;color:#f0f0f2}
+  .cs-rname .ri{width:22px;height:22px;border-radius:5px;background:#141416;border:1px solid #2a2a2e;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .cs-rtags{display:flex;flex-wrap:wrap;gap:6px}
+  .cs-rtags span{font-size:10.5px;color:var(--muted);background:transparent;border:1px solid rgba(255,255,255,.15);padding:3px 8px;border-radius:5px}
+  .cs-link{font-family:'Space Grotesk',monospace;font-size:12px;color:#9c9c9c;display:flex;align-items:center;gap:7px}
+  .cs-link:hover{color:#fff}
+  .cs-logo{position:relative;height:150px;border:1px solid #1c1c20;background:linear-gradient(180deg,#0b0b0d,#000);display:flex;align-items:center;justify-content:center}
+  .cs-logo img{max-height:30px;max-width:60%;filter:brightness(0) invert(1);opacity:.92}
+  .cs-logo .yc{position:absolute;top:12px;right:12px;width:16px;height:20px;background:#f26522;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fractul',serif;font-size:12px;font-weight:700}
+  .cs-out h4{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6a6a70;margin:6px 0 14px}
+  .cs-orow{padding:12px 0;border-top:1px solid var(--line)}
+  .cs-orow .n{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:16px;color:#fff}
+  .cs-orow .d{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+  /* right content */
+  .cs-body{min-width:0}
+  .cs-title{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:30px;line-height:1.2;letter-spacing:-.01em;margin-bottom:26px}
+  @media(min-width:1920px){.cs-title{font-size:36px}}
+  .cs-quote{border:1px solid var(--line);background:transparent;border-radius:12px;padding:26px;display:flex;gap:20px;align-items:flex-start;margin-bottom:44px}
+  .cs-quote .av{width:88px;height:88px;border-radius:10px;flex:none;background:linear-gradient(145deg,#2a2f3a,#12141a);position:relative;overflow:hidden}
+  .cs-quote .av::after{content:"";position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:#3a4150}
+  .cs-quote .av::before{content:"";position:absolute;left:50%;top:16px;transform:translateX(-50%);width:30px;height:30px;border-radius:50%;background:#4a5265}
+  .cs-quote blockquote{font-size:14px;line-height:1.6;color:#fff;font-style:italic}
+  .cs-quote cite{display:block;margin-top:12px;font-style:normal;font-size:12px;color:var(--muted)}
+  .cs-quote cite b{color:#fff;font-weight:600}
+  .cs-h{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:20px;color:#fff;margin:34px 0 14px}
+  .cs-body p{font-size:14px;line-height:1.72;color:var(--muted);max-width:760px;margin-bottom:12px}
+  .cs-ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin:6px 0 4px}
+  .cs-ul li{display:flex;gap:12px;font-size:14px;line-height:1.6;color:var(--muted);max-width:760px}
+  .cs-ul li .mk{flex:none;width:8px;height:8px;margin-top:7px;background:linear-gradient(135deg,var(--green),var(--lime))}
+  .cs-ul li .em{flex:none;font-size:13px;line-height:1.55;margin-top:1px}
+  .cs-ul li b{color:#fff;font-weight:600}
+
+  .cs-more{margin-top:52px}
+  .cs-more .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  .cs-more .mh h3{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:19px}
+  .cs-more .nav{display:flex;gap:8px}
+  .cs-more .nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--cardln);background:#0c0c0e;color:#ccc;cursor:pointer}
+  .cs-mcard{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:center;border:1px solid var(--line);background:transparent;padding:16px;margin-bottom:14px}
+  @media(max-width:640px){.cs-mcard{grid-template-columns:1fr}}
+  .cs-mlogo{height:130px;background:linear-gradient(180deg,#000 20%,#1a1a1a 132%);display:flex;align-items:center;justify-content:center}
+  .cs-mlogo img{max-height:26px;max-width:58%;filter:brightness(0) invert(1);opacity:.9}
+  .cs-mcard h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:12px}
+  .cs-mtags{display:flex;flex-wrap:wrap;gap:7px}
+  .cs-mtags span{font-size:11px;color:var(--muted);background:transparent;border:1px solid rgba(255,255,255,.15);padding:4px 9px;border-radius:5px}
+
+  .ft{border-top:1px solid var(--line);padding-top:70px;position:relative;overflow:hidden}
+  .ft-top{display:flex;gap:80px;flex-wrap:wrap;padding-bottom:56px}
+  .ft-brand{flex:1 1 300px;min-width:200px}.ft-brand img{height:26px}
+  .ft-col{min-width:150px}.ft-col h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:18px}
+  .ft-col a{display:block;font-size:14px;color:#9c9c9c;margin-bottom:12px;transition:color .2s}.ft-col a:hover{color:#fff}
+  .ft-col .soc{display:flex;align-items:center;gap:9px}.ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
+  .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
+  .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+  /* Our Products hover mega-menu */
+  .nav-dd{position:relative;display:flex;align-items:center}
+  .nav-dd>a{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .nav-dd>a::after{content:"";width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6;transition:transform .2s}
+  .nav-dd:hover>a::after{transform:rotate(225deg) translateY(-2px)}
+  .nav-dd::after{content:"";position:absolute;top:100%;left:-20px;right:-20px;height:22px}
+  .nav-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:540px;background:#0a0a0c;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 24px 60px rgba(0,0,0,.6);z-index:60}
+  .nav-dd:hover .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .nav-pcard{display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:10px;background:transparent;border:1px solid #1a1a1a;transition:border-color .2s}
+  .nav-pcard:hover{border-color:#2EA45F}
+  .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
+  .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
+  .nav-pcard .pd{font-family:'Inter',sans-serif;font-size:11.5px;color:#9c9c9c;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Spartan home"><img src="logo-spartan-horizontal.svg" alt="Spartan"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <div class="nav-dd"><a href="our-products.html">Our Products</a><div class="nav-panel"><a class="nav-pcard" href="our-layerproof.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span>LayerProof</span><span class="pd">Creative system with multiple sub-products.</span></a><a class="nav-pcard" href="our-dietfit.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span>DietFit</span><span class="pd">Free calorie counter + macro tracker.</span></a></div></div>
+      <a href="open-source.html">Open Source</a>
+      <a href="blog.html">Blog</a>
+      <a href="#">The Team</a>
+      <a href="#">Careers</a>
+    </div>
+    <a class="btn-demo" href="#">Get in touch</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="cs">
+      <aside class="cs-rail">
+        <div class="cs-rname"><span class="ri">&#10005;</span>ResiQuant</div>
+        <div class="cs-rtags"><span>AI for Insurance</span><span>B2B</span><span>data-heavy SaaS</span></div>
+        <a class="cs-link" href="https://www.resiquant.ai/" target="_blank" rel="noopener">&#128279; resiquant.ai</a>
+        <div class="cs-logo"><span class="yc">Y</span><img src="assets/logos/resiquant.png" alt="ResiQuant"></div>
+        <div class="cs-out">
+          <h4>/ Outcomes</h4>
+          <div class="cs-orow"><div class="n">&lt; 2 weeks</div><div class="d">Enabled VC outreach &amp; conference demos</div></div>
+          <div class="cs-orow"><div class="n">&gt;90% Table Extraction Accuracy</div><div class="d">(Azure Doc Intelligence + prompt tuning)</div></div>
+          <div class="cs-orow"><div class="n">Improved by ~50%</div><div class="d">Processing Speed</div></div>
+          <div class="cs-orow"><div class="n">Reduced by 60&ndash;70%</div><div class="d">Infra Cost</div></div>
+          <div class="cs-orow"><div class="n">1.5 months</div><div class="d">Production-ready orchestration</div></div>
+        </div>
+      </aside>
+
+      <section class="cs-body">
+        <h1 class="cs-title">The AI Platform powering NatCat Property Insurance</h1>
+
+        <div class="cs-quote">
+          <div class="av"></div>
+          <div>
+            <blockquote>&ldquo;The Spartan team is amazing! We had a very challenging ask for them in terms of technical rigor with limited available time, and they delivered. Their process is clean, well documented, and visible, so I always know what the team is doing and how. I really enjoy working with our team to the point that I feel like they are also members of our company.&rdquo;</blockquote>
+            <cite>&mdash; <b>Francisco Galvis</b> CTO &amp; Co-Founder @ resiquant, PhD Researcher, Stanford</cite>
+          </div>
+        </div>
+
+        <h2 class="cs-h">Overview</h2>
+        <p>ResiQuant is a San Francisco-based, seed-stage startup founded by Stanford PhDs and backed by Pear VC, LDV Capital, and Foothill Ventures. The platform empowers property insurers to underwrite high-risk buildings using AI-powered document parsing, structural data extraction, and automated risk scoring.</p>
+        <p>Faced with tight investor timelines and a fragmented prototype, ResiQuant partnered with Spartan to design and deliver a production-grade MVP &mdash; fast.</p>
+
+        <h2 class="cs-h">Spartan&rsquo;s Solution</h2>
+        <p>Spartan deployed a compact, full-stack team (backend, frontend, AI, DevOps) to own delivery of a functional MVP within 4 weeks.</p>
+
+        <h2 class="cs-h">Why Spartan</h2>
+        <ul class="cs-ul">
+          <li><span class="em">&#128311;</span><span><b>Full-Stack Velocity:</b> Shipped complex AI + infra system in weeks, not months.</span></li>
+          <li><span class="em">&#128311;</span><span><b>Tech Rigor under Time Pressure:</b> Delivered investor-grade demo without sacrificing accuracy or scale.</span></li>
+          <li><span class="em">&#128311;</span><span><b>Deep Collaboration:</b> Embedded with founders and PMs (async loops, daily Slack check-ins, and hands-on design reviews).</span></li>
+          <li><span class="em">&#128311;</span><span><b>AI-Native Thinking:</b> Combined LLM, OCR, and cloud-native infrastructure to unlock real business value.</span></li>
+        </ul>
+
+        <h2 class="cs-h">Outcomes</h2>
+        <ul class="cs-ul">
+          <li><span class="em">&#128293;</span><span><b>Demo Delivered:</b> &lt; 2 weeks &rarr; enabled VC outreach &amp; conference demos</span></li>
+          <li><span class="em">&#128293;</span><span><b>Table Extraction Accuracy:</b> &gt;90% (Azure Doc Intelligence + prompt tuning)</span></li>
+          <li><span class="em">&#128293;</span><span><b>Processing Speed:</b> Improved by ~50%</span></li>
+          <li><span class="em">&#128293;</span><span><b>Infra Cost:</b> Reduced by 60&ndash;70%</span></li>
+          <li><span class="em">&#128293;</span><span><b>AI-Native Thinking:</b> Combined LLM, OCR, and cloud-native infrastructure to unlock real business value.</span></li>
+        </ul>
+
+        <div class="cs-more">
+          <div class="mh">
+            <h3>More press from team</h3>
+            <div class="nav"><button aria-label="Prev">&#8249;</button><button aria-label="Next">&#8250;</button></div>
+          </div>
+          <a class="cs-mcard" href="case-resiquant.html">
+            <div class="cs-mlogo"><img src="assets/logos/resiquant.png" alt="ResiQuant"></div>
+            <div><h4>The AI Platform powering NatCat Property Insurance</h4><div class="cs-mtags"><span>AI for Insurance</span><span>B2B</span><span>data-heavy SaaS</span></div></div>
+          </a>
+          <a class="cs-mcard" href="#">
+            <div class="cs-mlogo"><img src="assets/logos/paratus-health.png" alt="Paratus Health"></div>
+            <div><h4>Gen AI Built for Healthcare. Designed for Your Phone Lines.</h4><div class="cs-mtags"><span>AI Healthcare</span><span>B2B</span><span>Saas</span></div></div>
+          </a>
+          <a class="cs-mcard" href="#">
+            <div class="cs-mlogo"><img src="assets/logos/chargefuze.png" alt="chargeFUZE"></div>
+            <div><h4>The ultimate convenience of on-the-go mobile device charging with chargeFUZE.</h4><div class="cs-mtags"><span>IoT-enabled</span><span>B2B</span><span>Saas</span><span>Mobility Tech</span></div></div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><img src="logo-spartan-horizontal.svg" alt="Spartan"></div>
+      <div class="ft-col"><h4>Platform</h4><a href="our-products.html">LayerProof</a><a href="our-products.html">Dietfit</a></div>
+      <div class="ft-col"><h4>Pages</h4><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="open-source.html">Open Source</a><a href="blog.html">Blog</a><a href="#">About Us</a><a href="#">Careers</a></div>
+      <div class="ft-col"><h4>Socials</h4>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 3.96 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg>Linkedin</a>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="ft-bottom"><span>&copy; 2026 Spartan</span><span>All rights reserved.</span></div>
+  </div>
+  <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
+</footer>
+
+</body>
+</html>

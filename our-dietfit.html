@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DietFit — Spartan Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Fractul';font-style:normal;font-weight:500;src:url('fonts/fractul-medium.ttf') format('truetype');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Space Grotesk',system-ui,sans-serif}
+  :root{--line:#1a1a1a;--muted:#9c9c9c;--surface:#0b0b0b;--orange:#e8781f}
+  html,body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:24px;padding-right:24px}
+  @media(min-width:1920px){.wrap{max-width:1640px}}
+  @media(max-width:640px){.wrap{padding-left:22px;padding-right:22px}}
+
+  .site-nav{position:sticky;top:0;z-index:50;height:70px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
+  .nav-logo img{height:26px;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;color:#e6e6e6;opacity:.9}.nav-links a:hover{opacity:1}
+  .btn-demo{background:#f4f4f5;color:#0a0a0a;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:400;font-size:15px;padding:10px 22px;border-radius:999px}
+  @media(max-width:1023px){.nav-links{display:none}}
+  .nav-dd{position:relative;display:flex;align-items:center}
+  .nav-dd>a{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .nav-dd>a::after{content:"";width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6;transition:transform .2s}
+  .nav-dd:hover>a::after{transform:rotate(225deg) translateY(-2px)}
+  .nav-dd::after{content:"";position:absolute;top:100%;left:-20px;right:-20px;height:22px}
+  .nav-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:540px;background:#0a0a0c;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 24px 60px rgba(0,0,0,.6);z-index:60}
+  .nav-dd:hover .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .nav-pcard{display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:10px;background:transparent;border:1px solid #1a1a1a;transition:border-color .2s}
+  .nav-pcard:hover{border-color:#2EA45F}
+  .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
+  .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
+  .nav-pcard .pd{font-size:11.5px;color:#9c9c9c;line-height:1.5}
+
+  /* hero banner */
+  .dh{margin:32px 0 0;border-radius:16px;overflow:hidden;position:relative;
+     background:linear-gradient(115deg,#f3d6a4 0%,#eab070 48%,#e09a55 100%);min-height:200px}
+  .dh-img{width:100%;display:block}
+  @media(max-width:820px){.dh{grid-template-columns:1fr;text-align:left}}
+  .dh-brand{display:flex;align-items:center;gap:9px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:#2a1c0c;margin-bottom:12px}
+  .dh-brand .ic{width:28px;height:28px;border-radius:7px;background:#e8781f;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .dh h1{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:56px;line-height:.98;color:#241a0c;margin-bottom:12px}
+  .dh .sub{font-size:14px;color:#3a2c16;max-width:320px;margin-bottom:22px}
+  .dh-feats{display:flex;flex-direction:column;gap:12px}
+  .dh-feats div{display:flex;align-items:center;gap:10px;font-size:14px;color:#2c2110;font-weight:500}
+  .dh-feats .b{width:24px;height:24px;border-radius:7px;background:#e8781f;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .dh-phone{justify-self:center;align-self:center;width:210px;aspect-ratio:9/18;border-radius:28px;border:6px solid #17130c;background:#faf5ec;box-shadow:0 26px 60px rgba(60,30,0,.4);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px}
+  .dh-phone .plate{width:84%;aspect-ratio:1;border-radius:50%;margin-top:6px;background:radial-gradient(circle at 50% 45%,#9cc25f 0 24%,#e7a94f 26% 50%,#cf4a35 52% 76%,#7fae54 78% 100%)}
+  .dh-phone .t{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#211a0c;margin-top:4px}
+  .dh-phone .t small{display:block;font-weight:400;font-size:9px;color:#7a6a4a}
+  .dh-phone .btn{margin-top:auto;width:76%;height:22px;border-radius:12px;background:#e8781f}
+
+  /* info strip */
+  .dstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+  @media(max-width:760px){.dstrip{grid-template-columns:1fr 1fr}}
+  .dstrip .cell{background:#000;padding:22px 22px 26px}
+  .dstrip .h{display:flex;align-items:center;gap:7px;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9c9c9c;margin-bottom:16px}
+  .dstrip .h .sq{width:9px;height:9px;background:#2a2a2e}
+  .dstrip .v{font-size:13.5px;line-height:1.55;color:#e6e6e6}
+  .dstrip .v span{display:block;color:#9c9c9c}
+
+  /* main two-col */
+  .dmain{display:grid;grid-template-columns:230px 1fr;gap:64px;align-items:start;padding:64px 0 90px}
+  @media(max-width:900px){.dmain{grid-template-columns:1fr;gap:30px}}
+  .drail{position:sticky;top:96px;display:flex;flex-direction:column;gap:14px}
+  @media(max-width:900px){.drail{position:static;flex-direction:row;flex-wrap:wrap}}
+  .drail a{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9c9c9c;transition:color .2s}
+  .drail a.on,.drail a:hover{color:#fff}
+
+  .dbody{min-width:0}
+  .dtitle{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:26px;color:#fff;margin-bottom:40px}
+  .sec{margin-bottom:52px}
+  .sec>h2{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:22px;color:#fff;margin-bottom:22px}
+  .prob{display:flex;flex-direction:column;gap:16px;max-width:820px}
+  .prob p{display:flex;gap:12px;font-size:14px;line-height:1.6;color:#9c9c9c}
+  .prob p .em{flex:none;font-size:13px;margin-top:1px}
+  .prob p b{color:#fff;font-weight:600}
+
+  .screens{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:820px){.screens{grid-template-columns:1fr}}
+  .screens .sc{display:flex;flex-direction:column;gap:14px}
+  .screens .sc h4{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:16px;color:#fff;text-align:center}
+  .screens .ph{aspect-ratio:9/16;border-radius:16px;border:1px solid #24242c;background:linear-gradient(180deg,#111014,#050507);position:relative;overflow:hidden}
+  .screens .ph.a{background:linear-gradient(180deg,#1a120c,#050403)}
+  .screens .ph.b{background:linear-gradient(180deg,#0c1410,#050706)}
+  .screens .ph.c{background:linear-gradient(180deg,#faf6ef,#e9e2d4)}
+  .screens .ph::after{content:"";position:absolute;inset:16px 14px;border-radius:12px;background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.08),transparent 60%)}
+
+  .steps{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+  .stp{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:24px;background:transparent}
+  @media(max-width:720px){.stp{grid-template-columns:1fr}}
+  .stp h4{font-size:17px;font-weight:600;color:#fff;margin-bottom:8px}
+  .stp p{font-size:13.5px;color:#9c9c9c;line-height:1.6}
+  .stp .img{aspect-ratio:16/10;border-radius:12px}
+  .stp:nth-child(1) .img{background:linear-gradient(135deg,#c9603a,#e7a94f)}
+  .stp:nth-child(2) .img{background:linear-gradient(135deg,#efe7d6,#d8cbb2)}
+  .stp:nth-child(3) .img{background:linear-gradient(135deg,#efe7d6,#f6f0e4)}
+  .checks{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .checks div{display:flex;align-items:center;gap:11px;font-size:14px;color:#cfcfcf}
+  .checks .ck{width:18px;height:18px;border-radius:50%;border:1px solid #3a3a40;color:#9c9c9c;display:flex;align-items:center;justify-content:center;font-size:10px;flex:none}
+
+  .achi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 40px;margin-top:20px;max-width:520px}
+  .achi .n{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:38px;color:#fff}
+  .achi .l{font-size:12.5px;color:#9c9c9c;margin-top:6px;line-height:1.4}
+
+  .tstack ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:22px;max-width:760px}
+  .tstack ul li{display:flex;gap:12px;font-size:14px;color:#9c9c9c;line-height:1.6}
+  .tstack ul li::before{content:"";width:6px;height:6px;margin-top:8px;background:#3a3a40;border-radius:50%;flex:none}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chips span{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#e6e6e6;background:transparent;border:1px solid var(--line);padding:10px 16px;border-radius:10px}
+  .chips .d{width:16px;height:16px;border-radius:4px;background:#1a1a1c;flex:none}
+
+  .bm{width:100%;border-collapse:collapse;border:1px solid var(--line);font-size:13px}
+  .bm th,.bm td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+  .bm th{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9c9c9c;font-weight:500}
+  .bm td{color:#cfcfcf;line-height:1.55}
+  .bm td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+
+  .relp{border:1px solid var(--line);display:grid;grid-template-columns:1fr 300px;align-items:stretch;margin-top:8px}
+  @media(max-width:640px){.relp{grid-template-columns:1fr}}
+  .relp .info{padding:24px;display:flex;flex-direction:column;gap:10px}
+  .relp .info .nm{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:16px;color:#fff}
+  .relp .info .nm .ic{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#f4b41a,#e94f3d)}
+  .relp .info h4{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:17px;color:#fff;margin-top:4px}
+  .relp .info p{font-size:12px;color:#9c9c9c;line-height:1.4;max-width:360px}
+  .relp .info .ex{margin-top:auto;font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9c9c9c;display:inline-flex;align-items:center;gap:8px}
+  .relp .rv{border-left:1px solid var(--line);background:#0a0a0c;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:16px;align-content:center}
+  .relp .rv i{aspect-ratio:3/4;border-radius:3px}
+  .relp .rv i:nth-child(1){background:#f4b41a}.relp .rv i:nth-child(2){background:#2e8b57}.relp .rv i:nth-child(3){background:#e0651a}.relp .rv i:nth-child(4){background:#7048c0}
+
+  .ft{border-top:1px solid var(--line);padding-top:70px;position:relative;overflow:hidden}
+  .ft-top{display:flex;gap:80px;flex-wrap:wrap;padding-bottom:56px}
+  .ft-brand{flex:1 1 300px;min-width:200px}.ft-brand img{height:26px}
+  .ft-col{min-width:150px}.ft-col h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:18px}
+  .ft-col a{display:block;font-size:14px;color:#9c9c9c;margin-bottom:12px}.ft-col a:hover{color:#fff}
+  .ft-col .soc{display:flex;align-items:center;gap:9px}.ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
+  .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
+  .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Spartan home"><img src="logo-spartan-horizontal.svg" alt="Spartan"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <div class="nav-dd"><a href="our-products.html">Our Products</a><div class="nav-panel"><a class="nav-pcard" href="our-layerproof.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span>LayerProof</span><span class="pd">Creative system with multiple sub-products.</span></a><a class="nav-pcard" href="our-dietfit.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span>DietFit</span><span class="pd">Free calorie counter + macro tracker.</span></a></div></div>
+      <a href="open-source.html">Open Source</a>
+      <a href="blog.html">Blog</a>
+      <a href="#">The Team</a>
+      <a href="#">Careers</a>
+    </div>
+    <a class="btn-demo" href="#">Get in touch</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <header class="dh">
+      <img class="dh-img" src="assets/dietfit-hero.png" alt="DietFit — Scan meals" onerror="this.remove()">
+    </header>
+
+    <div class="dstrip">
+      <div class="cell"><div class="h"><span class="sq"></span>Description</div><div class="v">DietFit helps busy people build healthy habits that last. Our app combines meal planning, fitness tracking, and habit coaching in one place.</div></div>
+      <div class="cell"><div class="h"><span class="sq"></span>Start build</div><div class="v">2025</div></div>
+      <div class="cell"><div class="h"><span class="sq"></span>Services</div><div class="v">Track calories AI mobile app</div></div>
+      <div class="cell"><div class="h"><span class="sq"></span>Result</div><div class="v">5K downloads<span>4.8 &#9733; App Store rating</span><span>500+ meals logged this month</span><span>89% active users at 3 months</span></div></div>
+    </div>
+
+    <div class="dmain">
+      <aside class="drail">
+        <a href="#problem" class="on">The problem</a>
+        <a href="#how">How it works</a>
+        <a href="#results">Real results &amp; achievements</a>
+        <a href="#tech">Tech stack</a>
+        <a href="#business">Business model</a>
+      </aside>
+
+      <div class="dbody">
+        <h1 class="dtitle">Free calorie counter + macro tracker</h1>
+
+        <section class="sec" id="problem">
+          <h2>The problem</h2>
+          <div class="prob">
+            <p><span class="em">&#128315;</span><span><b>AI calorie estimation is happening outside nutrition apps.</b> Many users already ask ChatGPT to estimate calories from meals, but general AI is not built for daily tracking.</span></p>
+            <p><span class="em">&#128315;</span><span><b>The market is shifting from tracking to coaching.</b> The winning product is not the one that only records food. It is the one that turns daily nutrition data into a clear loop: log + understand + adjust + repeat.</span></p>
+            <p><span class="em">&#128315;</span><span><b>Speed has become the new expectation.</b> Users no longer accept slow food search and manual entry.</span></p>
+            <p><span class="em">&#128073;&#127995;</span><span>DietFit is the missing intelligence layer between food tracking, real-time guidance, and behavior change.</span></p>
+          </div>
+
+          <div class="screens">
+            <div class="sc"><div class="ph a"></div><h4>AI Food Scanner &mdash; Photo to Macros</h4></div>
+            <div class="sc"><div class="ph b"></div><h4>Track Macros &amp; Calories Daily</h4></div>
+            <div class="sc"><div class="ph c"></div><h4>Food Diary &amp; Meal Log</h4></div>
+          </div>
+        </section>
+
+        <section class="sec" id="how">
+          <h2>How it works (3 steps)</h2>
+          <div class="steps">
+            <div class="stp"><div><h4>1. Snap</h4><p>Point your phone at any meal, anywhere.</p></div><div class="img"></div></div>
+            <div class="stp"><div><h4>2. AI does the math</h4><p>Calories, protein, carbs, fat in under 2 seconds, trained on 10M+ foods.</p></div><div class="img"></div></div>
+            <div class="stp"><div><h4>3. Watch progress happen</h4><p>Your weight, trends, and streaks &mdash; all in one place. No complicated dashboards.</p></div><div class="img"></div></div>
+          </div>
+          <div class="checks">
+            <div><span class="ck">&#10003;</span>Personalized Onboarding</div>
+            <div><span class="ck">&#10003;</span>AI Coach Chat</div>
+            <div><span class="ck">&#10003;</span>Meal Scoring &amp; Health Advisory</div>
+            <div><span class="ck">&#10003;</span>Daily Insight Card</div>
+          </div>
+        </section>
+
+        <section class="sec" id="results">
+          <h2>Real results &amp; achievements</h2>
+          <div class="achi">
+            <div><div class="n">1M</div><div class="l">Customers nine months after launch</div></div>
+            <div><div class="n">4.8&#9733;</div><div class="l">App Store rating</div></div>
+            <div><div class="n">89%</div><div class="l">Active users at 3 months</div></div>
+            <div><div class="n">500+</div><div class="l">Meals logged this month</div></div>
+          </div>
+        </section>
+
+        <section class="sec tstack" id="tech">
+          <h2>Tech stack</h2>
+          <ul>
+            <li>Durable workflow runtime</li>
+            <li>Collaborative, friendly DX for interactivity between humans and agents</li>
+            <li>Virtual Working Directory &mdash; a filesystem for agents</li>
+          </ul>
+          <div class="chips">
+            <span><span class="d"></span>React</span>
+            <span><span class="d"></span>Micronaut</span>
+            <span><span class="d"></span>Document AI</span>
+            <span><span class="d"></span>Centrifugo</span>
+            <span><span class="d"></span>Yo</span>
+          </div>
+        </section>
+
+        <section class="sec" id="business">
+          <h2>Business model</h2>
+          <table class="bm">
+            <thead><tr><th>Plan</th><th>For</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>3-day trial</td><td>New users</td><td>Try AI meal scan, tracking, and coaching features before subscribing.</td></tr>
+              <tr><td>Premium</td><td>Women actively trying to lose weight</td><td>AI food Analyzer, AI Coach chat, meal scoring, daily insights, weekly plan, and health-aware guidance.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="sec">
+          <h2>Relative Product</h2>
+          <a class="relp" href="our-layerproof.html">
+            <div class="info">
+              <div class="nm"><span class="ic"></span>LayerProof</div>
+              <h4>Creative system with multiple sub-products</h4>
+              <p>Turn messy documents into creative social posts, structured presentations and more</p>
+              <span class="ex">Explore &#8599;</span>
+            </div>
+            <div class="rv"><i></i><i></i><i></i><i></i></div>
+          </a>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><img src="logo-spartan-horizontal.svg" alt="Spartan"></div>
+      <div class="ft-col"><h4>Platform</h4><a href="our-layerproof.html">LayerProof</a><a href="our-dietfit.html">Dietfit</a></div>
+      <div class="ft-col"><h4>Pages</h4><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="open-source.html">Open Source</a><a href="blog.html">Blog</a><a href="#">About Us</a><a href="#">Careers</a></div>
+      <div class="ft-col"><h4>Socials</h4>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 3.96 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg>Linkedin</a>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="ft-bottom"><span>&copy; 2026 Spartan</span><span>All rights reserved.</span></div>
+  </div>
+  <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
+</footer>
+
+</body>
+</html>

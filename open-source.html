@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Source — Spartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Fractul';font-style:normal;font-weight:500;src:url('fonts/fractul-medium.ttf') format('truetype');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Space Grotesk',system-ui,sans-serif}
+  :root{--bg:#000;--fg:#fff;--muted:#9c9c9c;--muted2:#a1a1a1;--line:#1a1a1a;--card:#050506;--cardln:#1a1a1a;--green:#2EA45F;--lime:#6CFF80;--purple:#B388EB}
+  html,body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:inherit;text-decoration:none}
+  .fractul{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500}
+  .mono{font-family:'Space Grotesk',ui-monospace,monospace}
+
+  /* ---- container ---- */
+  .wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:24px;padding-right:24px}
+  @media(min-width:1920px){.wrap{max-width:1640px}}
+  @media(max-width:640px){.wrap{padding-left:22px;padding-right:22px}}
+
+  /* ---- nav ---- */
+  .site-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    height:70px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-logo img{height:26px;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;color:#e6e6e6;opacity:.9;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1;color:#fff}
+  .btn-demo{background:#f4f4f5;color:#0a0a0a;font-family:'Fractul','Space Grotesk',sans-serif;font-weight:400;
+    font-size:15px;padding:10px 22px;border-radius:999px;transition:filter .2s}
+  .btn-demo:hover{filter:brightness(.94)}
+  @media(max-width:1023px){.nav-links{display:none}}
+
+  /* ---- hero ---- */
+  .os-hero{padding:72px 0 40px;text-align:center}
+  .os-hero h1{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:34px;line-height:1.3;
+    letter-spacing:-.01em;max-width:820px;margin:0 auto;color:#fff}
+  @media(min-width:1920px){.os-hero h1{font-size:40px}}
+  @media(max-width:640px){.os-hero h1{font-size:24px}}
+
+  /* ---- filter tabs ---- */
+  .os-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:34px}
+  .os-chip{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#c9c9cf;
+    background:#141416;border:1px solid #232424;padding:8px 15px;border-radius:6px;cursor:pointer;transition:.2s}
+  .os-chip:hover{border-color:#3a3a40}
+  .os-chip.on{background:#f4f4f5;color:#0a0a0a;border-color:#f4f4f5}
+
+  /* ---- repo grid ---- */
+  .os-grid{margin-top:52px;padding-bottom:96px;display:grid;grid-template-columns:1fr 1fr;
+    gap:1px;background:#1a1a1a;border:1px solid #1a1a1a}
+  @media(max-width:860px){.os-grid{grid-template-columns:1fr}}
+  .repo-card{background:#000;padding:22px 24px 26px;display:flex;flex-direction:column;gap:20px}
+  .repo-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .repo-name{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;
+    font-size:13.5px;color:#e9e9ec;font-weight:500}
+  .repo-name .dot{width:16px;height:16px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;
+    background:#141416;border:1px solid #2a2a2e;font-size:9px;color:#9c9c9c}
+  .repo-tags{display:flex;gap:6px;flex-wrap:wrap}
+  .repo-tags span{font-size:10.5px;letter-spacing:.02em;color:var(--tc,#b7b7bd);
+    background:color-mix(in srgb,var(--tc,#8a8a90) 12%,transparent);border:1px solid color-mix(in srgb,var(--tc,#8a8a90) 40%,transparent);
+    padding:3px 8px;border-radius:5px;white-space:nowrap}
+  .repo-link{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk',monospace;
+    font-size:11.5px;color:#9c9c9c;transition:color .2s}
+  .repo-link:hover{color:#fff}
+  .repo-link .rk{width:12px;height:12px;transform:rotate(45deg);border:1px solid currentColor}
+  .repo-body{display:grid;grid-template-columns:210px 1fr;gap:26px;align-items:start}
+  @media(max-width:520px){.repo-body{grid-template-columns:1fr}}
+  .repo-visual{position:relative;aspect-ratio:1/1;border:1px solid #26262b;border-radius:8px;background:radial-gradient(130% 130% at 50% 0%,#101013 0%,#050506 72%);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:14px}
+  .repo-visual::before{content:"";position:absolute;top:12px;left:13px;width:5px;height:5px;border-radius:50%;background:#3a3a42;box-shadow:8px 0 0 #3a3a42,16px 0 0 #3a3a42}
+  .repo-visual::after{content:"";position:absolute;top:11px;right:12px;width:11px;height:8px;border:1px solid #3a3a42;border-radius:2px}
+  .repo-visual svg{width:66%;height:66%;stroke:#c7c7cd;fill:none;opacity:.9}
+  .repo-text h3{font-family:'Fractul','Space Grotesk',sans-serif;font-weight:500;font-size:18px;line-height:1.28;color:#f4f4f5;margin-bottom:12px}
+  .repo-text p{font-size:13px;line-height:1.6;color:#9c9c9c}
+
+  /* ---- footer ---- */
+  .ft{border-top:1px solid var(--line);padding-top:70px;position:relative;overflow:hidden}
+  .ft-top{display:flex;gap:80px;flex-wrap:wrap;padding-bottom:56px}
+  .ft-brand{flex:1 1 300px;min-width:200px}
+  .ft-brand img{height:26px}
+  .ft-col{min-width:150px}
+  .ft-col h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:18px}
+  .ft-col a{display:block;font-size:14px;color:#9c9c9c;margin-bottom:12px;transition:color .2s}
+  .ft-col a:hover{color:#fff}
+  .ft-col .soc{display:flex;align-items:center;gap:9px}
+  .ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
+  .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
+  .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+  @media(max-width:640px){.ft-top{gap:32px}}
+  /* Our Products hover mega-menu */
+  .nav-dd{position:relative;display:flex;align-items:center}
+  .nav-dd>a{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .nav-dd>a::after{content:"";width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6;transition:transform .2s}
+  .nav-dd:hover>a::after{transform:rotate(225deg) translateY(-2px)}
+  .nav-dd::after{content:"";position:absolute;top:100%;left:-20px;right:-20px;height:22px}
+  .nav-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);width:540px;background:#0a0a0c;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 24px 60px rgba(0,0,0,.6);z-index:60}
+  .nav-dd:hover .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .nav-pcard{display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:10px;background:transparent;border:1px solid #1a1a1a;transition:border-color .2s}
+  .nav-pcard:hover{border-color:#2EA45F}
+  .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
+  .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
+  .nav-pcard .pd{font-family:'Inter',sans-serif;font-size:11.5px;color:#9c9c9c;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;max-width:1280px">
+    <a class="nav-logo" href="index.html" aria-label="Spartan home"><img src="logo-spartan-horizontal.svg" alt="Spartan"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <div class="nav-dd"><a href="our-products.html">Our Products</a><div class="nav-panel"><a class="nav-pcard" href="our-layerproof.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4b41a,#e94f3d)"></span>LayerProof</span><span class="pd">Creative system with multiple sub-products.</span></a><a class="nav-pcard" href="our-dietfit.html"><span class="pt"><span class="i" style="background:linear-gradient(135deg,#f4a01f,#e8781f)"></span>DietFit</span><span class="pd">Free calorie counter + macro tracker.</span></a></div></div>
+      <a href="open-source.html" class="active">Open Source</a>
+      <a href="blog.html">Blog</a>
+      <a href="#">The Team</a>
+      <a href="#">Careers</a>
+    </div>
+    <a class="btn-demo" href="#">Get in touch</a>
+  </div>
+</nav>
+
+<header class="os-hero">
+  <div class="wrap">
+    <h1>Built for us, shared with everyone. These are the Spartan-grade libraries we&rsquo;ve open-sourced to empower the next generation of founders</h1>
+    <div class="os-filters">
+      <button class="os-chip on">All</button>
+      <button class="os-chip">Shell</button>
+      <button class="os-chip">Developer toolkit</button>
+      <button class="os-chip">Kotlin</button>
+      <button class="os-chip">Javascript</button>
+      <button class="os-chip">Typescript</button>
+      <button class="os-chip">Makefile</button>
+      <button class="os-chip">Python</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="os-grid">
+
+      <article class="repo-card">
+        <div class="repo-head">
+          <span class="repo-name"><span class="dot">&gt;_</span>devterm-kit</span>
+          <span class="repo-tags"><span style="--tc:#c58af9">Shell</span><span style="--tc:#8f8fe0">Developer toolkit</span>
+          <a class="repo-link" href="#"><span class="rk"></span>REPO</a>
+        </div>
+        <div class="repo-body">
+          <div class="repo-visual"><svg viewBox="0 0 100 100" stroke-width="1.4"><rect x="14" y="20" width="72" height="60" rx="4"/><rect x="26" y="32" width="48" height="36" rx="3"/><path d="M38 44l8 6-8 6M52 56h10"/></svg></div>
+          <div class="repo-text">
+            <h3>One command to the terminal setup senior devs spend days configuring.</h3>
+            <p>Automate the terminal setup that every experienced developer uses &mdash; but takes hours to configure manually. Run one command on a fresh machine and get a fully wired, productive shell in minutes.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="repo-card">
+        <div class="repo-head">
+          <span class="repo-name"><span class="dot">◷</span>pageindex-kit</span>
+          <span class="repo-tags"><span style="--tc:#a3e635">Kotlin</span><span style="--tc:#c58af9">Shell</span>
+          <a class="repo-link" href="#"><span class="rk"></span>REPO</a>
+        </div>
+        <div class="repo-body">
+          <div class="repo-visual"><svg viewBox="0 0 100 100" stroke-width="1.2"><circle cx="50" cy="50" r="34"/><ellipse cx="50" cy="50" rx="14" ry="34"/><ellipse cx="50" cy="50" rx="34" ry="14"/><path d="M16 50h68M50 16v68"/></svg></div>
+          <div class="repo-text">
+            <h3>A Modern Kotlin Engine for Smarter Content Indexing</h3>
+            <p>PageIndex builds a tree-structured index from documents (like a table of contents), then uses LLM reasoning to navigate it and find relevant sections. No vector database. No chunking. Just structure + reasoning.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="repo-card">
+        <div class="repo-head">
+          <span class="repo-name"><span class="dot">✳</span>ai-toolkit</span>
+          <span class="repo-tags"><span style="--tc:#f4c430">Javascript</span><span style="--tc:#4a9df0">Typescript</span><span style="--tc:#9c9c9c">Makefile</span><span style="--tc:#f4c430">Python</span><span style="--tc:#c58af9">Shell</span>
+          <a class="repo-link" href="#"><span class="rk"></span>REPO</a>
+        </div>
+        <div class="repo-body">
+          <div class="repo-visual"><svg viewBox="0 0 100 100" stroke-width="1.1"><g><circle cx="50" cy="24" r="3"/><circle cx="50" cy="76" r="3"/><circle cx="27" cy="37" r="3"/><circle cx="73" cy="37" r="3"/><circle cx="27" cy="63" r="3"/><circle cx="73" cy="63" r="3"/><circle cx="50" cy="50" r="3"/><path d="M50 27v46M30 39l40 22M70 39L30 61M27 40v20M73 40v20"/></g></svg></div>
+          <div class="repo-text">
+            <h3>Unifying Tools for the Next Generation of AI Development</h3>
+            <p>AI coding agents are fast. They&rsquo;re also careless. They skip tests, ignore your coding standards, push without review, and forget everything between sessions. Spartan fixes that. One command runs the guardrails your team already relies on.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="repo-card">
+        <div class="repo-head">
+          <span class="repo-name"><span class="dot">◭</span>devprism</span>
+          <span class="repo-tags"><span style="--tc:#4a9df0">Typescript</span><span style="--tc:#5fd3f3">Go</span><span style="--tc:#e0793a">Rust</span>
+          <a class="repo-link" href="#"><span class="rk"></span>REPO</a>
+        </div>
+        <div class="repo-body">
+          <div class="repo-visual"><svg viewBox="0 0 100 100" stroke-width="1.3"><path d="M50 20L24 74h52z"/><path d="M50 34L36 66h28z"/><path d="M50 20v14M36 66l-12 8M64 66l12 8"/></svg></div>
+          <div class="repo-text">
+            <h3>Stop Pasting Secrets Into Random Websites</h3>
+            <p>A free, open-source, privacy-first developer toolkit with 20 tools (JWT debugger, SQL formatter, regex tester, JSON tools, etc.). Runs 100% locally &mdash; web, desktop (Tauri), and CLI (Go). AI-powered explanations via OpenAI, Claude, or Ollama.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="repo-card">
+        <div class="repo-head">
+          <span class="repo-name"><span class="dot" style="--tc:#d9b54a;border-color:#5a4a1e">🔒</span>git-secret-protector</span>
+          <span class="repo-tags"><span style="--tc:#f4c430">Python</span>
+          <a class="repo-link" href="#"><span class="rk"></span>REPO</a>
+        </div>
+        <div class="repo-body">
+          <div class="repo-visual"><svg viewBox="0 0 100 100" stroke-width="1.2"><path d="M50 24L28 36v28l22 12 22-12V36z"/><path d="M50 24v28M28 36l22 12 22-12M50 52v24"/><path d="M39 42l22 12M61 42L39 54"/></svg></div>
+          <div class="repo-text">
+            <h3>Prevent sensitive data (secrets) from being committed or pushed to Git repositories.</h3>
+            <p>A Python-based CLI tool designed to securely manage and protect sensitive files in your Git repositories. It integrates with Cloud Secret Storage services to encrypt and decrypt files transparently.</p>
+          </div>
+        </div>
+      </article>
+      <div class="repo-card os-filler" aria-hidden="true"></div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><img src="logo-spartan-horizontal.svg" alt="Spartan"></div>
+      <div class="ft-col">
+        <h4>Platform</h4>
+        <a href="#">LayerProof</a>
+        <a href="#">Dietfit</a>
+      </div>
+      <div class="ft-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="open-source.html">Open Source</a>
+        <a href="blog.html">Blog</a>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="ft-col">
+        <h4>Socials</h4>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 3.96 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg>Linkedin</a>
+        <a class="soc" href="#"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2026 Spartan</span>
+      <span>All rights reserved.</span>
+    </div>
+  </div>
+  <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
+</footer>
+
+<script>
+  // simple filter interaction (visual only)
+  document.querySelectorAll('.os-chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.os-chip').forEach(function(x){x.classList.remove('on');});
+      c.classList.add('on');
+    });
+  });
+</script>
+</body>
+</html>
