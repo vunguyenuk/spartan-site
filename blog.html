@@ -86,6 +86,26 @@
   .nav-pcard .pt{display:flex;align-items:center;gap:8px;font-family:'Fractul','Space Grotesk',sans-serif;font-size:14.5px;color:#f2f2f2}
   .nav-pcard .pt .i{width:20px;height:20px;border-radius:6px;display:inline-block;flex:none}
   .nav-pcard .pd{font-family:'Inter',sans-serif;font-size:11.5px;color:#9c9c9c;line-height:1.5}
+
+  /* ===== mobile nav (hamburger) ===== */
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .nav-burger{display:none;width:40px;height:40px;align-items:center;justify-content:center;background:none;border:1px solid #2a2a2e;border-radius:8px;cursor:pointer;padding:0;flex:none}
+  .nav-burger b{position:relative;display:block;width:16px;height:2px;background:#e6e6e6;transition:background .2s}
+  .nav-burger b::before,.nav-burger b::after{content:"";position:absolute;left:0;width:16px;height:2px;background:#e6e6e6;transition:transform .25s,top .25s}
+  .nav-burger b::before{top:-5px}
+  .nav-burger b::after{top:5px}
+  body.nav-open .nav-burger b{background:transparent}
+  body.nav-open .nav-burger b::before{top:0;transform:rotate(45deg)}
+  body.nav-open .nav-burger b::after{top:0;transform:rotate(-45deg)}
+  .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;z-index:49;flex-direction:column;background:#000;backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a;padding:10px 24px 20px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility .22s}
+  .mobile-menu a{padding:12px 2px;font-size:16px;color:#e6e6e6;border-bottom:1px solid #141416}
+  .mobile-menu a.mm-sub{padding-left:16px;font-size:14px;color:#9c9c9c}
+  .mobile-menu a:last-child{border-bottom:none}
+  @media(max-width:1023px){
+    .nav-burger{display:inline-flex}
+    .mobile-menu{display:flex}
+    body.nav-open .mobile-menu{opacity:1;visibility:visible;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -102,7 +122,21 @@
       <a href="#">The Team</a>
       <a href="#">Careers</a>
     </div>
-    <a class="btn-demo" href="#">Get in touch</a>
+    <div class="nav-actions">
+      <a class="btn-demo" href="#">Get in touch</a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><b></b></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="our-products.html">Our Products</a>
+    <a class="mm-sub" href="our-layerproof.html">LayerProof</a>
+    <a class="mm-sub" href="our-dietfit.html">DietFit</a>
+    <a href="open-source.html">Open Source</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">The Team</a>
+    <a href="#">Careers</a>
   </div>
 </nav>
 
@@ -235,6 +269,12 @@
       c.classList.add('on');
     });
   });
+</script>
+<script>
+(function(){var b=document.querySelector('.nav-burger');if(!b)return;
+b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});
+document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('nav-open');b.setAttribute('aria-expanded','false');});});
+})();
 </script>
 </body>
 </html>

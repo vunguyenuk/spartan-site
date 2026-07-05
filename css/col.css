@@ -2285,7 +2285,7 @@ body {
 	}
 }
 
-@container services-col-top (width < 1275px) {
+@container services-col-top (width < 1000px) {
 	.services-row2 {
 		flex-direction: column;
 		align-items: center;
@@ -2305,7 +2305,7 @@ body {
 	}
 }
 
-@container services-col2 (width < 817px) {
+@container services-col2 (width < 640px) {
 	.services-row-top2 {
 		flex-direction: column;
 		align-items: flex-start;

@@ -693,7 +693,7 @@
   .section-from-the-col{grid-area:quote;margin:0 !important;padding:0 !important;gap:56px !important;align-items:flex-start !important}
   .section-from-the-subtitle2{font-size:24px !important;line-height:1.55 !important;max-width:none !important;min-height:0 !important;letter-spacing:-0.2px !important;text-align:left !important}
   /* logos: flush-left, uniform height, no wrap */
-  .section-from-the-logos{max-width:none !important;padding:0 !important;justify-content:flex-start !important;flex-wrap:nowrap !important;align-items:center !important;gap:26px !important;row-gap:0 !important}
+  .section-from-the-logos{max-width:none !important;padding:0 !important;justify-content:flex-start !important;flex-wrap:wrap !important;align-items:center !important;gap:0 26px !important}
   .section-from-the-graphic{flex-shrink:0 !important}
   .section-from-the-resiquant{width:207px !important;height:124px !important}
   .section-from-the-veraset{width:191px !important;height:124px !important}
@@ -749,6 +749,25 @@
   /* ===== all buttons: regular weight + Fractul ===== */
   button,a.btn-demo,.btn-primary,.btn-secondary,.btn-link,.nav-signin,
   [class*="btn-"],[class*="-btn"]{font-weight:400 !important;font-family:'Fractul','Space Grotesk',sans-serif !important}
+
+  /* ===== mobile nav (hamburger) ===== */
+  .nav-burger{display:none;width:40px;height:40px;align-items:center;justify-content:center;background:none;border:1px solid #2a2a2e;border-radius:8px;cursor:pointer;padding:0;flex:none}
+  .nav-burger b{position:relative;display:block;width:16px;height:2px;background:#e6e6e6;transition:background .2s}
+  .nav-burger b::before,.nav-burger b::after{content:"";position:absolute;left:0;width:16px;height:2px;background:#e6e6e6;transition:transform .25s,top .25s}
+  .nav-burger b::before{top:-5px}
+  .nav-burger b::after{top:5px}
+  body.nav-open .nav-burger b{background:transparent}
+  body.nav-open .nav-burger b::before{top:0;transform:rotate(45deg)}
+  body.nav-open .nav-burger b::after{top:0;transform:rotate(-45deg)}
+  .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;z-index:49;flex-direction:column;background:#000;backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a;padding:10px 24px 20px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility .22s}
+  .mobile-menu a{padding:12px 2px !important;font-size:16px !important;color:#e6e6e6;border-bottom:1px solid #141416}
+  .mobile-menu a.mm-sub{padding-left:16px !important;font-size:14px !important;color:#9c9c9c}
+  .mobile-menu a:last-child{border-bottom:none}
+  @media(max-width:1023px){
+    .nav-burger{display:inline-flex}
+    .mobile-menu{display:flex}
+    body.nav-open .mobile-menu{opacity:1;visibility:visible;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -773,7 +792,19 @@
   </div>
   <div class="nav-right">
     <a class="btn-demo" href="#">Get in touch</a>
+    <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><b></b></button>
   </div>
+ </div>
+ <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="our-products.html">Our Products</a>
+    <a class="mm-sub" href="our-layerproof.html">LayerProof</a>
+    <a class="mm-sub" href="our-dietfit.html">DietFit</a>
+    <a href="open-source.html">Open Source</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">The Team</a>
+    <a href="#">Careers</a>
  </div>
 </nav>
 
@@ -1233,6 +1264,14 @@
 		
 		<object data="assets/footer-graphic8.svg" class="footer-graphic-bottom" type="image/svg+xml"></object>
 	</footer>
+
+<script>
+/* ===== mobile nav toggle ===== */
+(function(){var b=document.querySelector('.nav-burger');if(!b)return;
+b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});
+document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('nav-open');b.setAttribute('aria-expanded','false');});});
+})();
+</script>
 
 <script>
 /* ===== scroll reveal ===== */

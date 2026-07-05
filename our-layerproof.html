@@ -119,6 +119,7 @@
   .bm th,.bm td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
   .bm th{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9c9c9c;font-weight:500}
   .bm td{color:#cfcfcf;line-height:1.55}.bm td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+  @media(max-width:520px){.bm td:first-child{white-space:normal}.bm th,.bm td{padding:12px 10px}}
 
   .relp{border:1px solid var(--line);display:grid;grid-template-columns:1fr 300px;align-items:stretch;margin-top:8px}
   @media(max-width:640px){.relp{grid-template-columns:1fr}}
@@ -138,6 +139,26 @@
   .ft-col .soc{display:flex;align-items:center;gap:9px}.ft-col .soc svg{width:17px;height:17px;fill:#9c9c9c}
   .ft-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:26px 0 34px;border-top:1px solid var(--line);color:#7a7a80;font-size:13.5px}
   .ft-word{display:block;width:100%;max-width:1280px;height:auto;margin:24px auto 0;padding:0 24px;box-sizing:border-box}@media(min-width:1920px){.ft-word{max-width:1640px}}
+
+  /* ===== mobile nav (hamburger) ===== */
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .nav-burger{display:none;width:40px;height:40px;align-items:center;justify-content:center;background:none;border:1px solid #2a2a2e;border-radius:8px;cursor:pointer;padding:0;flex:none}
+  .nav-burger b{position:relative;display:block;width:16px;height:2px;background:#e6e6e6;transition:background .2s}
+  .nav-burger b::before,.nav-burger b::after{content:"";position:absolute;left:0;width:16px;height:2px;background:#e6e6e6;transition:transform .25s,top .25s}
+  .nav-burger b::before{top:-5px}
+  .nav-burger b::after{top:5px}
+  body.nav-open .nav-burger b{background:transparent}
+  body.nav-open .nav-burger b::before{top:0;transform:rotate(45deg)}
+  body.nav-open .nav-burger b::after{top:0;transform:rotate(-45deg)}
+  .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;z-index:49;flex-direction:column;background:#000;backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a;padding:10px 24px 20px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility .22s}
+  .mobile-menu a{padding:12px 2px;font-size:16px;color:#e6e6e6;border-bottom:1px solid #141416}
+  .mobile-menu a.mm-sub{padding-left:16px;font-size:14px;color:#9c9c9c}
+  .mobile-menu a:last-child{border-bottom:none}
+  @media(max-width:1023px){
+    .nav-burger{display:inline-flex}
+    .mobile-menu{display:flex}
+    body.nav-open .mobile-menu{opacity:1;visibility:visible;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -154,7 +175,21 @@
       <a href="#">The Team</a>
       <a href="#">Careers</a>
     </div>
-    <a class="btn-demo" href="#">Get in touch</a>
+    <div class="nav-actions">
+      <a class="btn-demo" href="#">Get in touch</a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><b></b></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="our-products.html">Our Products</a>
+    <a class="mm-sub" href="our-layerproof.html">LayerProof</a>
+    <a class="mm-sub" href="our-dietfit.html">DietFit</a>
+    <a href="open-source.html">Open Source</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">The Team</a>
+    <a href="#">Careers</a>
   </div>
 </nav>
 
@@ -303,5 +338,11 @@
   <img class="ft-word" src="assets/footer-graphic8.svg" alt="Spartan">
 </footer>
 
+<script>
+(function(){var b=document.querySelector('.nav-burger');if(!b)return;
+b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});
+document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('nav-open');b.setAttribute('aria-expanded','false');});});
+})();
+</script>
 </body>
 </html>
