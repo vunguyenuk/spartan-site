@@ -107,11 +107,15 @@
     max-width:340px;margin-top:14px;color:#A1A1A1;font-size:16px;line-height:1.6;
   }
   .hero-sub b{color:#fff;font-weight:600}
-  @media(max-width:1440px){#hero-cube{width:420px;height:420px}}
+  @media(max-width:1440px){#hero-cube{width:360px;height:360px;top:50%}}
+  @media(max-width:1280px){
+    .hero{flex-direction:column;justify-content:flex-start}
+    .hero-inner{flex-direction:column;padding-top:120px;gap:24px}
+    .hero-sub{max-width:560px}
+    #hero-cube{position:static;order:2;transform:none;width:300px;height:300px;margin:36px auto 48px;flex:none}
+  }
   @media(max-width:900px){
-    .hero-inner{flex-direction:column;padding-top:150px}
-    .hero-sub{max-width:100%}
-    #hero-cube{top:62%;width:260px;height:260px}
+    #hero-cube{width:260px;height:260px}
   }
 
   /* ---------- TRUSTED marquee ---------- */
@@ -768,6 +772,24 @@
     .mobile-menu{display:flex}
     body.nav-open .mobile-menu{opacity:1;visibility:visible;transform:none}
   }
+
+  /* ===== helped-clients list: uniform logo column, tidy left-aligned rows ===== */
+  .services-row4,.services-row6,.services-row7{gap:48px !important}
+  .cl-cell{width:220px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start}
+  .services-company-name{width:220px;flex-shrink:0;padding-right:0 !important}
+  .services-layer2{position:static !important;width:220px !important;height:auto !important;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start}
+  .services-clip-path{position:static !important;height:22px !important;width:auto !important}
+  .services-col3{gap:8px !important}
+  .group1,.services-row5,.services-row-top1,.services-row3,.services-row-bottom2{padding-top:24px !important;padding-bottom:24px !important;align-items:center !important}
+
+  /* helped-clients mobile: logo cells align left with the text */
+  @container services-row-top1 (width < 1058px){.services-row1{align-items:flex-start !important}}
+  @container row-b (width < 1058px){.row-row{align-items:flex-start !important}}
+  @container services-row5 (width < 1058px){.services-row6{align-items:flex-start !important}}
+  @container services-row-bottom2 (width < 1058px){.services-row7{align-items:flex-start !important}}
+
+  /* expanded featured panel: same border as the other accordion rows */
+  .services-col-top .services-row2{border:1px solid var(--black-border);border-top:0}
 </style>
 </head>
 <body>
@@ -1036,7 +1058,7 @@
 					<object data="assets/services-circle-plus1.svg" class="services-circle-plus1" type="image/svg+xml"></object>
 					
 					<div class="services-row1">
-						<object data="assets/services-resiquant.svg" class="services-resiquant" type="image/svg+xml"></object>
+						<div class="cl-cell"><object data="assets/services-resiquant.svg" class="services-resiquant" type="image/svg+xml"></object></div>
 						<p class="services-text-left1">
 							ResiQuant raises <span class="sub-text-green">$4M</span> to revolutionise property insurance with AI-powered insights.
 						</p>
@@ -1097,7 +1119,7 @@
 				<object data="assets/row/row-circle1.svg" class="circle-plus row-circle1" type="image/svg+xml"></object>
 				
 				<div class="row-row">
-					<object data="assets/row-row/row-layer1.svg" class="graphic row-layer" type="image/svg+xml"></object>
+					<div class="cl-cell"><object data="assets/row-row/row-layer1.svg" class="graphic row-layer" type="image/svg+xml"></object></div>
 					<p class="text-left-bottom row-text2">
 						Onlook has raised a total funding of <span class="sub-text-green">$500K</span> over 1 round. 
 					</p>
@@ -1108,7 +1130,7 @@
 				<object data="assets/row/row-circle2.svg" class="circle-plus row-circle1" type="image/svg+xml"></object>
 				
 				<div class="row-row">
-					<object data="assets/row-row/row-layer2.svg" class="graphic row-layer" type="image/svg+xml"></object>
+					<div class="cl-cell"><object data="assets/row-row/row-layer2.svg" class="graphic row-layer" type="image/svg+xml"></object></div>
 					<p class="text-left-bottom row-text2">
 						Raises <span class="sub-text-green">$24.5M</span> in round led by Norwest Venture Partners and <span class="sub-text-white2">Secured </span><span class="sub-text-green">$58M</span><span class="sub-text-white2"> to Fuel Stablecoin Push on Visa Network.</span>
 					</p>
@@ -1119,7 +1141,7 @@
 				<object data="assets/row/row-circle3.svg" class="circle-plus row-circle1" type="image/svg+xml"></object>
 				
 				<div class="row-row">
-					<object data="assets/row-row/row-layer3.svg" class="graphic row-layer" type="image/svg+xml"></object>
+					<div class="cl-cell"><object data="assets/row-row/row-layer3.svg" class="graphic row-layer" type="image/svg+xml"></object></div>
 					<p class="text-left-bottom row-text2">
 						sFox raised a total of <span class="sub-text-green">$22.8M</span> over 4 funding rounds: 3 Seed and 1 Early-Stage rounds. 
 					</p>
@@ -1130,7 +1152,7 @@
 				<object data="assets/services-circle-plus3.svg" class="services-circle-plus3" type="image/svg+xml"></object>
 				
 				<div class="services-row6">
-					<object data="assets/services-layer.svg" class="graphic services-layer1" type="image/svg+xml"></object>
+					<div class="cl-cell"><object data="assets/services-layer.svg" class="graphic services-layer1" type="image/svg+xml"></object></div>
 					
 					<div class="services-col3">
 						<p>
@@ -1565,11 +1587,11 @@ document.querySelectorAll('.btn-primary').forEach(b=>{
 (function(){
   var o=document.getElementById('hero-gradient');
   var e=o.getContext('webgl'); if(!e)return;
-  function m(){var t=Math.min(window.devicePixelRatio||1,2);o.width=o.clientWidth*t;o.height=o.clientHeight*t;e.viewport(0,0,o.width,o.height);_&&e.uniform2f(_,o.width,o.height);}
+  function m(){var t=Math.min(window.devicePixelRatio||1,2);o.width=o.clientWidth*t;o.height=o.clientHeight*t;e.viewport(0,0,o.width,o.height);_&&e.uniform2f(_,o.width,o.height);R&&e.uniform1f(R,window.matchMedia('(max-width:1280px)').matches?1.0:0.0);}
   var VS='attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0.0,1.0);}';
   var FS=[
   'precision highp float;',
-  'uniform vec2 u_res; uniform float u_time;',
+  'uniform vec2 u_res; uniform float u_time; uniform float u_rot;',
   // pyramid bar palette (purple top -> green base)
   'const vec3 lightLime=vec3(0.74,1.0,0.82);',
   'const vec3 lime=vec3(0.33,0.87,0.49);',
@@ -1590,6 +1612,8 @@ document.querySelectorAll('.btn-primary').forEach(b=>{
   'void main(){',
   ' vec2 pos=gl_FragCoord.xy; pos.y=u_res.y-pos.y;',
   ' float ux=pos.x/u_res.x, uy=pos.y/u_res.y;',
+  ' float asp=u_res.x/u_res.y;',
+  ' if(u_rot>0.5){ float tt=ux; ux=1.15-uy; uy=tt; asp=u_res.y/u_res.x; }',
   ' vec3 color=vec3(0.0);',
   ' float fanMid=0.40;',
   // BOTTOM: stepped pyramid (ziggurat) - symmetric, centered, purple top -> green base
@@ -1613,7 +1637,7 @@ document.querySelectorAll('.btn-primary').forEach(b=>{
   ' }',
   // top fan
   ' if(uy<fanMid){',
-  '   vec2 dir=vec2((ux-0.5)*(u_res.x/u_res.y),fanMid-uy);',
+  '   vec2 dir=vec2((ux-0.5)*asp,fanMid-uy);',
   '   float radius=length(dir); float ang=atan(dir.x,dir.y); float spread=0.50;',
   '   if(abs(ang)<spread){',
   '     float NL=13.0; float a01=ang/spread*0.5+0.5;',
@@ -1633,7 +1657,7 @@ document.querySelectorAll('.btn-primary').forEach(b=>{
   var p=e.createProgram();e.attachShader(p,vs);e.attachShader(p,fs);e.linkProgram(p);e.useProgram(p);
   var b=e.createBuffer();e.bindBuffer(e.ARRAY_BUFFER,b);e.bufferData(e.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),e.STATIC_DRAW);
   var loc=e.getAttribLocation(p,'a_pos');e.enableVertexAttribArray(loc);e.vertexAttribPointer(loc,2,e.FLOAT,false,0,0);
-  var _=e.getUniformLocation(p,'u_res'), T=e.getUniformLocation(p,'u_time');
+  var _=e.getUniformLocation(p,'u_res'), T=e.getUniformLocation(p,'u_time'), R=e.getUniformLocation(p,'u_rot');
   m();window.addEventListener('resize',m);
   function frame(t){e.uniform1f(T,t*0.001);e.drawArrays(e.TRIANGLE_STRIP,0,4);requestAnimationFrame(frame);}
   requestAnimationFrame(frame);
